@@ -180,7 +180,7 @@
     .strike-count::after{
       content:""; position:absolute; left:0; right:0; top:50%; height:6px; transform:translateY(-50%) scaleX(0);
       transform-origin:left; border-radius:6px;
-      background: linear-gradient(90deg, transparent, rgba(0,0,0,.28), transparent);
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.68), transparent);
       transition: transform .55s ease .2s;
     }
     .strike-count.done::after{ transform:translateY(-50%) scaleX(1); }
@@ -863,7 +863,7 @@
                 <ul class="mt-3 space-y-1 text-gray-300">
                 <li>公司：TRIPLE TECH - 三人科技顧問</li>
                 <li>Gmail：<a href="mailto:tripletech.ai@gmail.com" class="footer-link">tripletech.ai@gmail.com</a></li>
-                <li>官網：<a href="#" target="_blank" rel="noopener" class="footer-link">BONNI.AI 幫你加速到未來</a></li>
+                <li>官網：<a href="https://tritech-bonni.github.io/" target="_blank" rel="noopener" class="footer-link">tritech-bonni.github.io</a></li>
                 </ul>
             </div>
 
@@ -871,9 +871,9 @@
             <div class="footer-col">
                 <h4 class="font-semibold text-white/90">追蹤社群</h4>
                 <ul class="mt-3 space-y-1 text-gray-300">
-                <li>Line ID: <a href="https://lin.ee/mVfWFf0" target="_blank" class="footer-link" style="color: #10b981;">@470arioq(點擊加入)</a></li>
-                <li>臉書粉絲團：<a href="#" target="_blank" class="footer-link" style="color: #0b64e8;">三人科技顧問</a></li>
-                <li>Instagram：<a href="#" target="_blank" class="footer-link" style="color: #f64899;">BONNI.AI 幫你加速到未來</a></li>
+                <li>Line ID : <a href="https://lin.ee/mVfWFf0" target="_blank" class="footer-link" style="color: #10b981;">@470arioq(點擊加入)</a></li>
+                <li>臉書粉絲團 : <a href="#" target="_blank" class="footer-link" style="color: #0b64e8;">三人科技顧問</a></li>
+                <li>Instagram : <a href="#" target="_blank" class="footer-link" style="color: #f64899;">BONNI.AI 幫你加速到未來</a></li>
                 </ul>
             </div>
 
@@ -1038,72 +1038,91 @@
       }
 
       /* 心得回饋輪播 */
-      (function autoScrollTestimonials(){
-        const scroller = document.getElementById('testimonials-scroller');
-        const track = document.getElementById('testimonials-track');
-        const tpl = document.getElementById('t-card');
-        if (!scroller || !track || !tpl) return;
+(function autoScrollTestimonials(){
+  const scroller = document.getElementById('testimonials-scroller');
+  const track = document.getElementById('testimonials-track');
+  const tpl = document.getElementById('t-card');
+  if (!scroller || !track || !tpl) return;
 
-        const data = [
-          { msg:'「以前要熬夜 3 小時做完的會後統計，現在 1 分鐘搞定。」', who:'某分會 主席', color:'#F59E0B' },
-          { msg:'「抽獎統計從 15 分鐘變 1 秒，接待組終於可以專心招呼來賓。」', who:'某分會 接待', color:'#3B82F6' },
-          { msg:'「活動報名狀況即時同步，不用再一個個問，協調效率大增。」', who:'某分會 活動', color:'#F97316' },
-          { msg:'「續約追蹤自動提醒，流失率明顯下降。」', who:'某分會 副主席', color:'#10B981' },
-          { msg:'「表單→表格→統計全自動，準時又可靠。」', who:'某分會 秘書', color:'#8B5CF6' },
-          { msg:'「行政作業減少 70% 以上，會後 10 分鐘所有數字就緒。」', who:'某分會 幹部', color:'#EC4899' },
-        ];
-        function addCard(d){
-          const node = tpl.content.cloneNode(true);
-          node.querySelector('.msg').textContent = d.msg;
-          node.querySelector('.who').textContent = d.who;
-          const av = node.querySelector('.avatar');
-          av.src = `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" rx="20" fill="'+d.color+'"/></svg>')}`;
-          track.appendChild(node);
-        }
-        data.forEach(addCard);
+  const data = [
+    { msg:'「有了BONNI AI 八長不怕沒人當。」', who:'長輝分會 主席', color:'#F59E0B' },
+    { msg:'「靠AI讓我每週省下30分鐘接待作業，更願意做接待組長。」', who:'長輝分會 接待組長', color:'#3B82F6' },
+    { msg:'「活動報名狀況即時同步，不用再一個個問，協調效率大增。」', who:'某分會 活動組長', color:'#F97316' },
+    { msg:'「續約追蹤自動提醒，流失率明顯下降。」', who:'某分會 副主席', color:'#10B981' },
+    { msg:'「表單→表格→統計全自動，準時又可靠。」', who:'長輝分會 會員', color:'#8B5CF6' },
+    { msg:'「行政作業減少 70% 以上，會後會檔案都讓AI建置。」', who:'長輝分會 行銷組', color:'#EC4899' },
+  ];
+  function addCard(d){
+    const node = tpl.content.cloneNode(true);
+    node.querySelector('.msg').textContent = d.msg;
+    node.querySelector('.who').textContent = d.who;
+    const av = node.querySelector('.avatar');
+    av.src = `data:image/svg+xml;utf8,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><rect width="40" height="40" rx="20" fill="'+d.color+'"/></svg>')}`;
+    track.appendChild(node);
+  }
+  data.forEach(addCard);
 
-        const originals = Array.from(track.children);
-        if (originals.length === 0) return;
-        const origCount = originals.length;
+  const originals = Array.from(track.children);
+  if (originals.length === 0) return;
+  const origCount = originals.length;
 
-        const MIN_ITEMS = 6;
-        const speed = 0.6;
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const MIN_ITEMS = 6;
+  const speed = 0.73;
 
-        let paused = false, rafId = null, resetPoint = 0;
+  // ↓↓↓ 把原本的「const reduced = …」整行改成這三行
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isTouch = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+  const allowMotion = isTouch ? true : !prefersReduced;  // 手機一律啟動；桌機才尊重減少動態
 
-        function rebuild(){
-          while (track.children.length) track.removeChild(track.lastChild);
-          originals.forEach(n => track.appendChild(n.cloneNode(true)));
-          while (track.children.length < MIN_ITEMS || track.scrollWidth < scroller.clientWidth * 2){
-            originals.forEach(n => track.appendChild(n.cloneNode(true)));
-            if (track.children.length > 60) break;
-          }
-          resetPoint = track.children[origCount]?.offsetLeft || Math.max(1, track.scrollWidth / 2);
-        }
-        rebuild();
+  let paused = false, rafId = null, resetPoint = 0;
 
-        function tick(){
-          if (!paused && !reduced){
-            scroller.classList.add('no-snap');
-            scroller.scrollLeft += speed;
-            if (scroller.scrollLeft >= resetPoint){
-              scroller.scrollLeft -= resetPoint;
-            }
-          }
-          rafId = requestAnimationFrame(tick);
-        }
-        rafId = requestAnimationFrame(tick);
+  function rebuild(){
+    while (track.children.length) track.removeChild(track.lastChild);
+    originals.forEach(n => track.appendChild(n.cloneNode(true)));
+    while (track.children.length < MIN_ITEMS || track.scrollWidth < scroller.clientWidth * 2){
+      originals.forEach(n => track.appendChild(n.cloneNode(true)));
+      if (track.children.length > 60) break;
+    }
+    resetPoint = track.children[origCount]?.offsetLeft || Math.max(1, track.scrollWidth / 2);
+  }
+  rebuild();
 
-        const setPaused = (v) => { paused = v; scroller.classList.toggle('no-snap', !v); };
-        ['mouseenter','pointerdown','focusin','touchstart'].forEach(ev => scroller.addEventListener(ev, () => setPaused(true)));
-        ['mouseleave','pointerup','focusout','touchend','touchcancel'].forEach(ev => scroller.addEventListener(ev, () => setPaused(false)));
+  function tick(){
+    if (!paused && allowMotion){       // ← 這裡把 !reduced 換成 allowMotion
+      scroller.classList.add('no-snap');
+      scroller.scrollLeft += speed;
+      if (scroller.scrollLeft >= resetPoint){
+        scroller.scrollLeft -= resetPoint;
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+  rafId = requestAnimationFrame(tick);
 
-        const io = new IntersectionObserver((ents)=>{ ents.forEach(e=>{ if (e.isIntersecting) { if(!rafId) rafId = requestAnimationFrame(tick); } else { if(rafId){ cancelAnimationFrame(rafId); rafId = null; } } }); }, { threshold:0.2 });
-        io.observe(scroller);
+  const setPaused = (v) => { paused = v; scroller.classList.toggle('no-snap', !v); };
+  ['mouseenter','pointerdown','focusin','touchstart'].forEach(ev => scroller.addEventListener(ev, () => setPaused(true)));
+  ['mouseleave','pointerup','focusout','touchend','touchcancel'].forEach(ev => scroller.addEventListener(ev, () => setPaused(false)));
 
-        let rzT=null; window.addEventListener('resize', ()=>{ clearTimeout(rzT); rzT=setTimeout(()=>{ const ratio = resetPoint ? (scroller.scrollLeft / resetPoint) : 0; rebuild(); scroller.scrollLeft = ratio * resetPoint; },150); });
-      })();
+  // （可選優化）threshold 降低，較容易啟動
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{
+      if (e.isIntersecting) { if(!rafId) rafId = requestAnimationFrame(tick); }
+      else { if(rafId){ cancelAnimationFrame(rafId); rafId = null; } }
+    });
+  }, { threshold: 0.05 });
+  io.observe(scroller);
+
+  let rzT=null;
+  window.addEventListener('resize', ()=>{
+    clearTimeout(rzT);
+    rzT=setTimeout(()=>{
+      const ratio = resetPoint ? (scroller.scrollLeft / resetPoint) : 0;
+      rebuild();
+      scroller.scrollLeft = ratio * resetPoint;
+    },150);
+  });
+})();
+
 
       /* Before/After：浮動顯示 */
       (function(){
